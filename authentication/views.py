@@ -45,8 +45,9 @@ def get_token(user):
 	return token_json(access_token)
 
 class Signup(APIView):
-
+	
 	def post(self, request):
+		#signup where user will enter his/her credentials and a application will be created in oautth2 table.
 		try:
 			data = request.data
 			name = data["name"]
@@ -81,7 +82,7 @@ class Signup(APIView):
 			return Response({"error":str(e)},status=400)
 
 	def get(self, request):
-
+		#login api to get user access token
 		try:
 			encoded_data = request.META.get("HTTP_AUTHORIZATION").split(' ')[1]
 			username = base64.b64decode(encoded_data).decode('utf-8').partition(':')[0]
